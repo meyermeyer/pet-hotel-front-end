@@ -12,7 +12,11 @@ const styles = {
 		padding: '15px',
 		marginRight: '40px',
 		marginTop: '20px',
+		width: '80%',
 	},
+	table: {
+		margin: '15px',
+	}
 
 };
 
@@ -21,14 +25,15 @@ class PetTable extends Component{
 	componentDidMount(){
 		this.props.dispatch({type: 'FETCH_PET'})
 	};//end componentDidMount
-	
+
 	render(){
 		const {classes} = this.props;
+		let editButton;
 		return(
 			<Grid className={classes.root}>
 			<p>PET TABLE</p>
 			<Paper className={classes.paper}>
-		      <Table>
+		      <Table className={classes.table}>
 		        <TableHead>
 		          <TableRow>
 		            <TableCell>Owner</TableCell>
@@ -46,8 +51,25 @@ class PetTable extends Component{
 		              <TableCell align="right">PET BREED</TableCell>
 		              <TableCell align="right">PET COLOR</TableCell>
 		              <TableCell align="right">PET CHECKED IN</TableCell>
-					  <TableCell align="right"><Button variant="contained" color="primary">Check in</Button><Button>Check out</Button><Button variant="contained" color="secondary">Delete</Button></TableCell>
+					  <TableCell align="right"><Button variant="contained" color="primary">EDIT</Button><Button variant="contained" color="secondary">DELETE</Button></TableCell>
 		            </TableRow>
+					{this.props.pet && this.props.pet.map((pet) => {
+						if(this.props.pet.checked_in){
+							editButton = <Button variant="contained" color="primary">Check out</Button>
+						}else if(!this.props.pet.checked_in){
+							editButton = <Button variant="contained" color="primary">Check in</Button>
+						}
+						return(
+							<TableRow key={pet.id}>
+								<TableCell>{pet.owner_id}</TableCell>
+								<TableCell>{pet.name}</TableCell>
+								<TableCell>{pet.breed}</TableCell>
+								<TableCell>{pet.color}</TableCell>
+								<TableCell>{pet.checked_in}</TableCell>
+								<TableCell>{editButton} <Button variant="contained" color="secondary">Delete</Button></TableCell>
+							</TableRow>
+						)
+					})}
 		        </TableBody>
 		      </Table>
     		</Paper>
@@ -57,7 +79,7 @@ class PetTable extends Component{
 }
 
 const mapStateToProps = state => ({
-	state
+	pet: state.pet
 });
 
 export default withStyles(styles)(connect(mapStateToProps)(PetTable));
