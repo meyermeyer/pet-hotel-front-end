@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Paper, Table, TableBody, TableCell, TableHead, TableRow, Button, Grid} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
+import PetForm from '../PetForm/PetForm'
 
 const styles = {
 	root: {
@@ -31,6 +32,7 @@ class PetTable extends Component{
 		let editButton;
 		return(
 			<Grid className={classes.root}>
+				<PetForm/>
 			<p>PET TABLE</p>
 			<Paper className={classes.paper}>
 		      <Table className={classes.table}>
