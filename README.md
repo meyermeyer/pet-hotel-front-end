@@ -1,115 +1,66 @@
-# Prime Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+# Pet Hotel Project
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+> NOTE: Do not fork this repository. Instead, create your own repository from scratch.
 
-## Download (Don't Clone) This Repository
+Trello Board: https://trello.com/b/1mJRBCmZ/pet-hotel-weekend-project
 
-* Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-* Unzip the project and start with the code in that folder.
-* Create a new GitHub project and push this code to the new repository.
+This Board has some tasks already defined, feel free to update as see fit.
 
-## Prerequisites
+## Technology
 
-Before you get started, make sure you have the following software installed on your computer:
+We are replacing our Node/Express/PG server with other serverside tech. Your RESTful API server needs to be able to route requests, respond, and talk to our PostGRES database.
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+Be sure to try to focus your Googling to API Servers with these stacks. There are tutorials for all of these where the focus is to get a basic REST API server up and running.
 
-## Create database and table
+### Tech Guide
 
-Create a new database called `prime_app` and create a `user` table:
+These are suggested frameworks and DB connectors for each stack:
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+- Java / Spring Boot (web framework)
+  - `JBDC` for DB connection and queries
+- Python / Flask (web framework)
+  - `psycopg2` for DB connection and queries
+- Ruby / Sinatra (web framework)
+  - `Active Record` which supports a different `pg` for actually connecting
+- PHP / Routing: Easiest is to set the `url` for requests to a specific .php file directly, which will respond with data
+  - `pg-connect` and other built in methods for DB queries
+  - PHP has many frameworks, Laravel is popular but probably overkill for this
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+## Client Side
 
-## Development Setup Instructions
+The client side should remain React, Redux, Redux Sagas as needed. You will need to create one repo for your React application and another for the server. This will disrupt your usual workflow!
 
-* Run `npm install`
-* Create a `.env` file at the root of the project and paste this line into the file:
-    ```
-    SERVER_SESSION_SECRET=superDuperSecret
-    ```
-    While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-* Start postgres if not running already by using `brew services start postgresql`
-* Run `npm run server`
-* Run `npm run client`
-* Navigate to `localhost:3000`
+You may run into proxy issues as you try to get axios to make requests to another port. Try to work through them. Recall the `proxy` setting we have been adding to our `package.json`...
 
-## Debugging
+## Features
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+- Add owners
+- Add pets
+- Remove owners if no pets are assigned
+- Remove pets
+- Check in / out a pet
+- Show total number of pet next to each owner
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+### Wireframes
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+#### Dashboard View
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+![Add Entry Page](page-one.png)
 
+#### Manage Owners View
 
-## Testing Routes with Postman
+![Add Entry Page](page-two.png)
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum. 
+### Database
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+Start with two tables **pets** & **owners**. When base features are complete, add more tables as needed for stretch goals.
 
-1. Start the server - `npm run server`
-2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Passport. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-    1. `POST /api/user/register` registers a new user, see body to change username/password
-    2. `POST /api/user/login` will login a user, see body to change username/password
-    3. `GET /api/user` will get user information, by default it's not very much
+## Documentation
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+Before moving on past Base features, please take time to comment your code and otherwise document what you've learned about your new server side technology stack. The rest of your cohort will benefit from your trailblazing!
 
+## Other Features
 
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-* Start postgres if not running already by using `brew services start postgresql`
-* Run `npm start`
-* Navigate to `localhost:5000`
-
-## Lay of the Land
-
-* `src/` contains the React application
-* `public/` contains static assets for the client-side
-* `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-* `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-* src/components
-  * App/App
-  * Footer/Footer
-  * Nav/Nav
-  * AboutPage/AboutPage
-  * InfoPage/InfoPage
-  * UserPage/UserPage
-  * LoginPage/LoginPage
-  * RegisterPage/RegisterPage
-  * LogOutButton/LogOutButton
-  * ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+- Update pets and owners
+- Keep track of visits (you may need another table or two for this)
+- Add images for pets
