@@ -1,10 +1,19 @@
+--  Database name: pet_hotel
 
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
-CREATE TABLE "user" (
+CREATE TABLE "owner"
+(
+"id" SERIAL PRIMARY KEY,
+    "name" VARCHAR(25) NOT NULL
+);
+
+CREATE TABLE "pet"
+(
     "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "name" VARCHAR(25) NOT NULL,
+    "owner_id" INT REFERENCES "owner",
+    "breed" VARCHAR(20) NOT NULL,
+    "color" VARCHAR(20) NOT NULL,
+    "checked_in" BOOLEAN DEFAULT true,
+    "date_in" DATE,
+    "visit" INT
 );
