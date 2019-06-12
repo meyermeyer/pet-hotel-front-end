@@ -1,12 +1,52 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Paper, Table, TableBody, TableCell, TableHead, TableRow, Button, Grid} from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
+
+const styles = {
+	root: {
+		margin: '40px',
+		
+	},
+	paper: {
+		padding: '15px',
+		marginRight: '40px',
+		marginTop: '20px',
+	},
+
+};
 
 class PetTable extends Component{
 	render(){
+		const {classes} = this.props;
 		return(
-			<>
+			<Grid className={classes.root}>
 			<p>PET TABLE</p>
-			</>
+			<Paper className={classes.paper}>
+		      <Table>
+		        <TableHead>
+		          <TableRow>
+		            <TableCell>Owner</TableCell>
+		            <TableCell align="right">Pet</TableCell>
+		            <TableCell align="right">Breed</TableCell>
+		            <TableCell align="right">Color</TableCell>
+		            <TableCell align="right">Checked In?</TableCell>
+					<TableCell align="right">Actions</TableCell>
+		          </TableRow>
+		        </TableHead>
+		        <TableBody>
+		            <TableRow>
+					  <TableCell align="right">PET OWNER</TableCell>
+		              <TableCell align="right">PET NAME</TableCell>
+		              <TableCell align="right">PET BREED</TableCell>
+		              <TableCell align="right">PET COLOR</TableCell>
+		              <TableCell align="right">PET CHECKED IN</TableCell>
+					  <TableCell align="right"><Button variant="contained" color="primary">Check in</Button><Button>Check out</Button><Button variant="contained" color="secondary">Delete</Button></TableCell>
+		            </TableRow>
+		        </TableBody>
+		      </Table>
+    		</Paper>
+			</Grid>
 		)
 	}
 }
@@ -15,5 +55,4 @@ const mapStateToProps = state => ({
 	state
 });
 
-// this allows us to use <App /> in index.js
-export default (connect(mapStateToProps)(PetTable));
+export default withStyles(styles)(connect(mapStateToProps)(PetTable));
