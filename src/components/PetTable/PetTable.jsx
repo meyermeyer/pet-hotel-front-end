@@ -17,6 +17,11 @@ const styles = {
 };
 
 class PetTable extends Component{
+
+	componentDidMount(){
+		this.props.dispatch({type: 'FETCH_PET'})
+	};//end componentDidMount
+	
 	render(){
 		const {classes} = this.props;
 		return(
