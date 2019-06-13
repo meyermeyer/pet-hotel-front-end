@@ -32,7 +32,6 @@ function* updatePet(action) {
 function* petSaga() {
 	yield takeLatest('FETCH_PET', fetchPet);
 	yield takeLatest('ADD_PET', addPet);
-	yield takeLatest('DELETE_PET', deletePet);
 	yield takeLatest('UPDATE_PET', updatePet);
 }
 
