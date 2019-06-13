@@ -27,6 +27,16 @@ function* updatePet(action) {
 	}catch(error){
 		console.log('error in updatePet:', error)
 	}
+
+function* deletePet(action){
+	try { 
+        console.log('delete from saga',action.payload)
+        yield axios.delete(`/api/day/${action.payload}`)
+        yield put({type: 'FETCH_PET'})
+    }
+    catch(error) {
+    console.log('error in deletePet:', error)
+  }
 }
 
 function* petSaga() {
