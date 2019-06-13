@@ -11,8 +11,20 @@ function* fetchPet(action){
 	}
 }
 
+function* removePet(action){
+	try { 
+        console.log('delete from saga',action.payload)
+        yield axios.delete(`/api/day/${action.payload}`)
+        yield put({type: 'FETCH_PET'})
+    }
+    catch(error) {
+    console.log(error)
+  }
+}
+
 function* petSaga() {
 	yield takeLatest('FETCH_PET', fetchPet);
+	yield takeLatest('DELETE_PET', removePet);
 }
 
 export default petSaga;
