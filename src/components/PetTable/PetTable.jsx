@@ -28,6 +28,7 @@ class PetTable extends Component{
 	};//end componentDidMount
 
 	render(){
+		console.log('pet reducer', this.props.pet)
 		const {classes} = this.props;
 		let editButton;
 		return(
@@ -56,9 +57,11 @@ class PetTable extends Component{
 					  <TableCell align="right"><Button variant="contained" color="primary">EDIT</Button><Button variant="contained" color="secondary">DELETE</Button></TableCell>
 		            </TableRow>
 					{this.props.pet && this.props.pet.map((pet) => {
-						if(this.props.pet.checked_in){
+						if(pet.checked_in){
+							console.log('checked in')
 							editButton = <Button variant="contained" color="primary">Check out</Button>
-						}else if(!this.props.pet.checked_in){
+						}else if(!pet.checked_in){
+							console.log('not checked in')
 							editButton = <Button variant="contained" color="primary">Check in</Button>
 						}
 						return(
@@ -67,7 +70,7 @@ class PetTable extends Component{
 								<TableCell>{pet.name}</TableCell>
 								<TableCell>{pet.breed}</TableCell>
 								<TableCell>{pet.color}</TableCell>
-								<TableCell>{pet.checked_in}</TableCell>
+								<TableCell>{pet.checked_in.toString()}</TableCell>
 								<TableCell>{editButton} <Button variant="contained" color="secondary">Delete</Button></TableCell>
 							</TableRow>
 						)
