@@ -45,23 +45,16 @@ class OwnerTable extends Component {
                             <TableRow>
                                 <TableCell>Owner</TableCell>
                                 <TableCell align="right">Number of Pets</TableCell>
-                                <TableCell align="right">Actions </TableCell>
-                                
+                                <TableCell align="right">Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            <TableRow>
-                                <TableCell >NAME </TableCell>
-                                <TableCell align="right">NUMBER OF PETS</TableCell>
-                                <TableCell align="right">ACTIONS</TableCell>
-                                <Button variant="contained" color="secondary">Delete</Button>
-                            </TableRow>
                             {this.props.owner && this.props.owner.map((owner) => {
                                 return (
                                     <TableRow key={owner.id}>
                                         <TableCell>{owner.name}</TableCell>
-                                        <TableCell>{owner.pet_number}</TableCell>
-                                        <TableCell><Button onClick={()=>this.handleDelete(owner)} variant="contained" color="secondary">Delete</Button></TableCell>
+                                        <TableCell align="right">{owner.pet_number}</TableCell>
+                                        <TableCell align="right"><Button onClick={()=>this.handleDelete(owner)} variant="contained" color="secondary">Delete</Button></TableCell>
                                     </TableRow>
                                 )
                             })}

@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import { withStyles } from '@material-ui/core/styles';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Button, TextField, Select, MenuItem} from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
 
 const styles = {
     root: {
@@ -41,7 +39,7 @@ class PetForm extends Component {
         console.log('Click Add Name Button');
         console.log(this.state);
 
-        this.props.dispatch({ type: 'ADD_PET', payload: this.state })
+        this.props.dispatch({type: 'ADD_PET', payload: this.state})
     }
 
     render() {
@@ -56,12 +54,13 @@ class PetForm extends Component {
                 <TextField type="text" placeholder="Breed" />
                 <Select>
                     {this.props.owners && this.props.owners.map(owner => (
-                        <option key={owner.id}>{owner.name}</option>
+                        <MenuItem key={owner.id}>{owner.name}</MenuItem>
                         
                     ))}
                     </Select>
                 
-                <Button type="submit" variant="contained" color="default" >Submit </Button>
+              <Button type="submit" variant="contained" color="default" >Submit </Button>
+                   
             </form>
             </div>
         )
