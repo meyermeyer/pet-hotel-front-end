@@ -19,12 +19,19 @@ const styles = {
 
 
 
+
 class Dashboard extends Component{
+
+	 manageHandler = () => {
+		this.props.history.push("/manage")
+	}
+
 	render(){
 		const {classes} = this.props;
 		return(
 			<Grid className={classes.root}>
-				<h2>Here is the dashboard!</h2>
+				<h2>Here is the Pet Dashboard!</h2>
+				<button onClick={this.manageHandler}> Manage Owners </button>
 				<PetTable />
 			</Grid>
 		)
