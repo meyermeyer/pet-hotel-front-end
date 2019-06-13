@@ -53,9 +53,14 @@ class PetForm extends Component {
                 <TextField type="text" placeholder="Color"/>
                 <TextField type="text" placeholder="Breed" />
                 <Select>
-                    <MenuItem>Owner</MenuItem>
-                </Select>
-                <Button type="submit" variant="contained" color="primary">Submit </Button>
+                    {this.props.owners && this.props.owners.map(owner => (
+                        <MenuItem key={owner.id}>{owner.name}</MenuItem>
+                        
+                    ))}
+                    </Select>
+                
+              <Button type="submit" variant="contained" color="default" >Submit </Button>
+                   
             </form>
             </div>
         )
@@ -63,7 +68,8 @@ class PetForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    pet: state.pet
+    pet: state.pet,
+    owners: state.ownerReducer
 });
 
 // this allows us to use <App /> in index.js
