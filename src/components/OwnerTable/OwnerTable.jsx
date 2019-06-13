@@ -27,6 +27,11 @@ class OwnerTable extends Component {
         this.props.dispatch({ type: 'FETCH_OWNER' })
     };//end componentDidMount
 
+    handleDelete = (owner)=>{
+        console.log('in owner handleDelete')
+        this.props.dispatch({type:'DELETE_OWNER', payload:owner.id})
+    }
+
     render() {
         const { classes } = this.props;
         return (
@@ -51,15 +56,15 @@ class OwnerTable extends Component {
                                 <TableCell align="right">ACTIONS</TableCell>
                                 <Button variant="contained" color="secondary">Delete</Button>
                             </TableRow>
-                            {/* {this.props.owner && this.props.owner.map((owner) => {
+                            {this.props.owner && this.props.owner.map((owner) => {
                                 return (
                                     <TableRow key={owner.id}>
                                         <TableCell>{owner.name}</TableCell>
                                         <TableCell>{owner.pet_number}</TableCell>
-                                        <TableCell><Button variant="contained" color="secondary">Delete</Button></TableCell>
+                                        <TableCell><Button onClick={()=>this.handleDelete(owner)} variant="contained" color="secondary">Delete</Button></TableCell>
                                     </TableRow>
                                 )
-                            })} */}
+                            })}
                         </TableBody>
                     </Table>
                 </Paper>
