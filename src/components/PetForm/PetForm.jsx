@@ -39,7 +39,7 @@ class PetForm extends Component {
         console.log('Click Add Name Button');
         console.log(this.state);
 
-        this.props.dispatch({ type: 'ADD_PET', payload: this.state })
+        this.props.dispatch({type: 'ADD_PET', payload: this.state})
     }
 
     render() {

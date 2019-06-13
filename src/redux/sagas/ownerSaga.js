@@ -14,7 +14,7 @@ function* addOwner(action) {
     try {
         console.log('addOwner', action.payload)
         yield axios.post('/api/owner');
-        yield put({ type: 'FETCH_PET'})
+        yield put({type: 'FETCH_PET'})
     } catch (error) {
         console.log('error in fetchPet:', error)
     }
