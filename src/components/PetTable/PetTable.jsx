@@ -26,6 +26,24 @@ class PetTable extends Component{
 		this.props.dispatch({type: 'FETCH_PET'})
 	};//end componentDidMount
 
+// Handle delete button click action to delete the selected pet from table
+handleDeleteClick = id => () => {
+	console.log("delete click for id", id);
+	this.props.dispatch({
+		type: "DELETE_PET",
+		payload: id
+	});
+}
+
+handleEditClick = id => () => {
+	console.log("update click for id", id);
+	this.props.dispatch({
+		type: "UPDATE_PET",
+		payload: id
+	})
+}
+
+
 	render(){
 		console.log('pet reducer', this.props.pet)
 		const {classes} = this.props;
@@ -53,12 +71,12 @@ class PetTable extends Component{
 		              <TableCell align="right">PET BREED</TableCell>
 		              <TableCell align="right">PET COLOR</TableCell>
 		              <TableCell align="right">PET CHECKED IN</TableCell>
-					  <TableCell align="right"><Button variant="contained" color="primary">EDIT</Button><Button variant="contained" color="secondary">DELETE</Button></TableCell>
+					  <TableCell align="right"><Button variant="contained" color="primary" >EDIT</Button><Button variant="contained" color="secondary">DELETE</Button></TableCell>
 		            </TableRow>
 					{this.props.pet && this.props.pet.map((pet) => {
 						if(pet.checked_in){
 							console.log('checked in')
-							editButton = <Button variant="contained" color="primary">Check out</Button>
+							editButton = <Button onClick={this.handleEditClick(pet.id)} variant="contained" color="primary">Check out</Button>
 						}else if(!pet.checked_in){
 							console.log('not checked in')
 							editButton = <Button variant="contained" color="primary">Check in</Button>
@@ -70,7 +88,7 @@ class PetTable extends Component{
 								<TableCell>{pet.breed}</TableCell>
 								<TableCell>{pet.color}</TableCell>
 								<TableCell>{pet.checked_in.toString()}</TableCell>
-								<TableCell>{editButton} <Button variant="contained" color="secondary">Delete</Button></TableCell>
+								<TableCell>{editButton} <Button onClick={this.handleDeleteClick(pet.id)} variant="contained" color="secondary">Delete</Button></TableCell>
 							</TableRow>
 						)
 					})}
