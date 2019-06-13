@@ -51,7 +51,7 @@ class OwnerTable extends Component {
                                 <TableCell align="right">ACTIONS</TableCell>
                                 <Button variant="contained" color="secondary">Delete</Button>
                             </TableRow>
-                            {this.props.owner && this.props.owner.map((owner) => {
+                            {/* {this.props.owner && this.props.owner.map((owner) => {
                                 return (
                                     <TableRow key={owner.id}>
                                         <TableCell>{owner.name}</TableCell>
@@ -59,7 +59,7 @@ class OwnerTable extends Component {
                                         <TableCell><Button variant="contained" color="secondary">Delete</Button></TableCell>
                                     </TableRow>
                                 )
-                            })}
+                            })} */}
                         </TableBody>
                     </Table>
                 </Paper>
