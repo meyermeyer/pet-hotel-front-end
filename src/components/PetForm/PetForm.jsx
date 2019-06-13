@@ -69,7 +69,7 @@ class PetForm extends Component {
 
 const mapStateToProps = state => ({
     pet: state.pet,
-    owners: state.ownerReducer
+    owners: state.owner
 });
 
 // this allows us to use <App /> in index.js
