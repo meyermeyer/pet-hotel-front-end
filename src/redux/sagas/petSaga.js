@@ -22,7 +22,7 @@ function* addPet(action) {
 
 function* updatePet(action) {
 	try{
-		yield axios.put('/pet/:id', action.payload)
+		yield axios.put(`/pet/${action.payload}`)
 		yield put({type: 'FETCH_PET'})
 	}catch(error){
 		console.log('error in updatePet:', error)

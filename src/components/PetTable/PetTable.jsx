@@ -84,7 +84,7 @@ handleEditClick = id => () => {
 						return(
 							<TableRow key={pet.id}>
 								<TableCell>{pet.owner_id}</TableCell>
-								<TableCell>{pet.name}</TableCell>
+								<TableCell>{pet.pet_name}</TableCell>
 								<TableCell>{pet.breed}</TableCell>
 								<TableCell>{pet.color}</TableCell>
 								<TableCell>{pet.checked_in.toString()}</TableCell>
