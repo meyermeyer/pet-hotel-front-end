@@ -37,6 +37,9 @@ nameHandler = (event)=>{
     }
 }
 
+const mapStateToProps = reduxState => ({
+    reduxState
+});
 
 // this allows us to use <App /> in index.js
-export default connect()(OwnerForm);
+export default connect(mapStateToProps)(OwnerForm);

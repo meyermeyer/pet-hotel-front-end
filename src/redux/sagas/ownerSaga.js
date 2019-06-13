@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {put, takeLatest} from 'redux-saga/effects';
+import {put, takeEvery} from 'redux-saga/effects';
 
 function* fetchOwner() {
     try {
@@ -10,8 +10,9 @@ function* fetchOwner() {
     }
 }
 
-function* addOwner() {
+function* addOwner(action) {
     try {
+        console.log('addOwner', action.payload)
         yield axios.post('/api/owner');
         yield put({ type: 'FETCH_PET'})
     } catch (error) {
@@ -21,8 +22,8 @@ function* addOwner() {
 
 
 function* ownerSaga() {
-    yield takeLatest('FETCH_OWNER', fetchOwner);
-    yield takeLatest('ADD_OWNER', addOwner)
+    yield takeEvery('FETCH_OWNER', fetchOwner);
+    yield takeEvery('ADD_OWNER', addOwner)
 }
 
 export default ownerSaga;
