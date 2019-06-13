@@ -53,7 +53,7 @@ class OwnerTable extends Component {
                                 return (
                                     <TableRow key={owner.id}>
                                         <TableCell>{owner.name}</TableCell>
-                                        <TableCell align="right">{owner.pet_number}</TableCell>
+                                        <TableCell align="right">{owner.count}</TableCell>
                                         <TableCell align="right"><Button onClick={()=>this.handleDelete(owner)} variant="contained" color="secondary">Delete</Button></TableCell>
                                     </TableRow>
                                 )
