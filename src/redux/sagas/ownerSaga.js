@@ -3,17 +3,18 @@ import {put, takeEvery} from 'redux-saga/effects';
 
 function* fetchOwner() {
     try {
-        const response = yield axios.get('/api/owner');
+        const response = yield axios.get('/owner');
         yield put({type: 'SET_OWNER', payload: response.data})
     } catch (error) {
         console.log('error in fetchOwner:', error)
     }
 }
 
+
 function* addOwner(action) {
     try {
         console.log('addOwner', action.payload)
-        yield axios.post('/api/owner');
+        yield axios.post('/owner');
         yield put({type: 'FETCH_OWNER'})
     } catch (error) {
         console.log('error in fetchPet:', error)
@@ -22,7 +23,7 @@ function* addOwner(action) {
 
 function* deleteOwner(action){
 	try { 
-        yield axios.delete(`/api/owner/${action.payload}`)
+        yield axios.delete(`/owner/${action.payload}`)
         yield put({type: 'FETCH_OWNER'})
     }
     catch(error) {

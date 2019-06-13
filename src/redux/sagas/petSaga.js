@@ -4,7 +4,7 @@ import {put, takeLatest} from 'redux-saga/effects';
 function* fetchPet(action){
 	try{
 		console.log('fetchpet action.payload:', action.payload)
-		const response = yield axios.get('/api/pet');
+		const response = yield axios.get('/pet');
 		yield put({type: 'SET_PET', payload: response.data})
 	}catch(error){
 		console.log('error in fetchPet:', error)
@@ -13,7 +13,7 @@ function* fetchPet(action){
 
 function* addPet(action) {
 	try{
-		yield axios.post('/api/pet', action.payload)
+		yield axios.post('/pet', action.payload)
 		yield put({type: 'FETCH_PET'});
 	}catch(error){
 		console.log('error in addPet:', error)
@@ -22,7 +22,7 @@ function* addPet(action) {
 
 function* updatePet(action) {
 	try{
-		yield axios.put('/api/pet/:id', action.payload)
+		yield axios.put('/pet/:id', action.payload)
 		yield put({type: 'FETCH_PET'})
 	}catch(error){
 		console.log('error in updatePet:', error)
@@ -32,7 +32,7 @@ function* updatePet(action) {
 function* deletePet(action){
 	try { 
         console.log('delete from saga',action.payload)
-        yield axios.delete(`/api/pet/${action.payload}`)
+        yield axios.delete(`/pet/${action.payload}`)
         yield put({type: 'FETCH_PET'})
     }
     catch(error) {
