@@ -55,11 +55,12 @@ class PetForm extends Component {
                 <TextField type="text" placeholder="Color"/>
                 <TextField type="text" placeholder="Breed" />
                 <Select>
-                    {this.props.owners.map(owner => (
-                        <option key={owner.id}>owner.name</option>
+                    {this.props.owners && this.props.owners.map(owner => (
+                        <option key={owner.id}>{owner.name}</option>
+                        
                     ))}
-                    
-                </Select>
+                    </Select>
+                
                 <Button type="submit" variant="contained" color="default" >Submit </Button>
             </form>
             </div>
