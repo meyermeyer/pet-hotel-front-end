@@ -11,9 +11,8 @@ const styles = {
 	},
 	paper: {
 		padding: '15px',
-		marginRight: '40px',
 		marginTop: '20px',
-		width: '80%',
+		width: '90%',
 	},
 	table: {
 		margin: '15px',

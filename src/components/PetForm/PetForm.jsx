@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import { withStyles } from '@material-ui/core/styles';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Button, TextField, Select, MenuItem} from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
 
 const styles = {
     root: {
@@ -55,9 +53,9 @@ class PetForm extends Component {
                 <TextField type="text" placeholder="Color"/>
                 <TextField type="text" placeholder="Breed" />
                 <Select>
-                    <option>Owner</option>
+                    <MenuItem>Owner</MenuItem>
                 </Select>
-                <Button type="submit" variant="contained" color="default" >Submit </Button>
+                <Button type="submit" variant="contained" color="primary">Submit </Button>
             </form>
             </div>
         )
