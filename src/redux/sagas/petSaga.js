@@ -32,7 +32,7 @@ function* updatePet(action) {
 function* deletePet(action){
 	try { 
         console.log('delete from saga',action.payload)
-        yield axios.delete(`/api/day/${action.payload}`)
+        yield axios.delete(`/api/pet/${action.payload}`)
         yield put({type: 'FETCH_PET'})
     }
     catch(error) {

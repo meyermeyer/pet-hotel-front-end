@@ -20,8 +20,14 @@ function* addOwner(action) {
     }
 }
 
-function* deleteOwner(action) {
-    
+function* deleteOwner(action){
+	try { 
+        yield axios.delete(`/api/owner/${action.payload}`)
+        yield put({type: 'FETCH_OWNER'})
+    }
+    catch(error) {
+    console.log('error in deleteOwner:', error)
+  }
 }
 
 
