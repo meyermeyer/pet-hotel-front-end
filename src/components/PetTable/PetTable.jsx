@@ -71,7 +71,7 @@ handleEditClick = id => () => {
 		              <TableCell align="right">PET BREED</TableCell>
 		              <TableCell align="right">PET COLOR</TableCell>
 		              <TableCell align="right">PET CHECKED IN</TableCell>
-					  <TableCell align="right"><Button variant="contained" color="primary" >EDIT</Button><Button variant="contained" color="secondary">DELETE</Button></TableCell>
+					  {/* <TableCell align="right"><Button variant="contained" color="primary" >EDIT</Button><Button variant="contained" color="secondary">DELETE</Button></TableCell> */}
 		            </TableRow>
 					{this.props.pet && this.props.pet.map((pet) => {
 						if(pet.checked_in){
